@@ -37,6 +37,17 @@ SELECT * FROM PRODUCTOS
 #Sin id de categoria, tendria que relacionar con el id de compra y ahi entender de a donde sale la categoria
 #con un join me imagino
 
+ALTER TABLE PRODUCTOS 
+ADD COLUMN TIPO_PRODUCTO_ID INT
+
+SELECT * FROM PRODUCTOS
+
+INSERT INTO PRODUCTOS (PRODUCTO, TIPO_PRODUCTO_ID)
+VALUES('El kybalion',4),
+      ('Los cuatro acuerdos',4),
+      ('Aspiradora inteligente',7),
+      ('Bajo',6);
+
 
 CREATE TABLE DETALLE_COMPRA(
 COMPRA_ID INT,
