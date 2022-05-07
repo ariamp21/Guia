@@ -1,6 +1,23 @@
+DROP TABLE COMPRAS
 
+CREATE TABLE COMPRAS (
+    ID int AUTO_INCREMENT AUTO_INCREMENT KEY,
+    NUMERO_ORDEN int NOT NULL,
+    CLIENTE_ID int,
+    FOREIGN KEY (CLIENTE_ID) REFERENCES CLIENTES(ID)
+);
 
-use jarvis;
+INSERT INTO COMPRAS (NUMERO_ORDEN, CLIENTE_ID)
+VALUES(2782872,1),
+      (2782873,3),
+      (2782874,4),
+      (2782875,1);
+	 
+SELECT * FROM COMPRAS c 
+
+#################################
+
+DROP TABLE TIPO_PRODUCTO
 
 CREATE TABLE TIPO_PRODUCTO(
 ID INT AUTO_INCREMENT AUTO_INCREMENT KEY,
@@ -9,6 +26,8 @@ DESCRIPCION varchar(50),
 FECHA_CREACION DATE
 );
 
+SELECT * FROM CLIENTES c 
+ORDER BY CATEGORIA 
 
 SELECT * FROM TIPO_PRODUCTO
 
@@ -22,38 +41,29 @@ VALUES(1, 'Accesorios','Elementos complementarios de la temporada','2020-01-20')
 	  (7, 'Robótica','Productos motrices con inteligencia','2017-04-01'),
 	  (8, 'Tecnología', 'Elementos innovadores para el diario vivir','2019-03-06');
 
-
-#Otra tabla de productos que se asocien con estas categorias: id 
+########################################
+DROP TABLE PRODUCTOS
 
 CREATE TABLE PRODUCTOS(
 ID INT AUTO_INCREMENT AUTO_INCREMENT KEY,
-PRODUCTO varchar(25)
+PRODUCTO varchar(25),
+TIPO_PRODUCTO_ID INT,
+FOREIGN KEY (TIPO_PRODUCTO_ID) REFERENCES TIPO_PRODUCTO(ID)
 );
 
-SELECT * FROM PRODUCTOS
-
-#asociar compra con productos - tabla intermedia de uno a muchos--- detalle_compra:  compra_id  productos_id
-#compra_id es el id de tbl compras, productos id, id de tabla productos
-#Sin id de categoria, tendria que relacionar con el id de compra y ahi entender de a donde sale la categoria
-#con un join me imagino
-
-ALTER TABLE PRODUCTOS 
-ADD COLUMN TIPO_PRODUCTO_ID INT
 
 SELECT * FROM PRODUCTOS
 
 INSERT INTO PRODUCTOS (PRODUCTO, TIPO_PRODUCTO_ID)
 VALUES('El kybalion',4),
-      ('Los cuatro acuerdos',4),
-      ('Aspiradora inteligente',7),
-      ('Bajo',6);
-
+	  ('Los cuatro acuerdos',4),
+	  ('Aspiradora inteligente',7),
+	  ('Bajo',6);
+#######################################
 
 CREATE TABLE DETALLE_COMPRA(
 COMPRA_ID INT,
 PRODUCTO_ID INT
 )
-
-SELECT * FROM DETALLE_COMPRA
 
 
