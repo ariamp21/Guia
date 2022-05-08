@@ -1,5 +1,3 @@
-DROP TABLE COMPRAS
-
 CREATE TABLE COMPRAS (
     ID int AUTO_INCREMENT AUTO_INCREMENT KEY,
     NUMERO_ORDEN int NOT NULL,
@@ -15,9 +13,7 @@ VALUES(2782872,1),
 	 
 SELECT * FROM COMPRAS c 
 
-#################################
-
-DROP TABLE TIPO_PRODUCTO
+#####################################
 
 CREATE TABLE TIPO_PRODUCTO(
 ID INT AUTO_INCREMENT AUTO_INCREMENT KEY,
@@ -25,9 +21,6 @@ NOMBRE varchar(25),
 DESCRIPCION varchar(50),
 FECHA_CREACION DATE
 );
-
-SELECT * FROM CLIENTES c 
-ORDER BY CATEGORIA 
 
 SELECT * FROM TIPO_PRODUCTO
 
@@ -41,8 +34,8 @@ VALUES(1, 'Accesorios','Elementos complementarios de la temporada','2020-01-20')
 	  (7, 'Robótica','Productos motrices con inteligencia','2017-04-01'),
 	  (8, 'Tecnología', 'Elementos innovadores para el diario vivir','2019-03-06');
 
-########################################
-DROP TABLE PRODUCTOS
+
+#####################################
 
 CREATE TABLE PRODUCTOS(
 ID INT AUTO_INCREMENT AUTO_INCREMENT KEY,
@@ -59,11 +52,28 @@ VALUES('El kybalion',4),
 	  ('Los cuatro acuerdos',4),
 	  ('Aspiradora inteligente',7),
 	  ('Bajo',6);
-#######################################
+	  
+#####################################
 
 CREATE TABLE DETALLE_COMPRA(
 COMPRA_ID INT,
 PRODUCTO_ID INT
 )
 
+ALTER TABLE DETALLE_COMPRA
+	ADD CONSTRAINT FK_COMPRA_ID
+		FOREIGN KEY (COMPRA_ID) REFERENCES COMPRAS (ID);
+
+ALTER TABLE DETALLE_COMPRA
+	ADD CONSTRAINT FK_PRODUCTO_ID
+		FOREIGN KEY (PRODUCTO_ID) REFERENCES PRODUCTOS (ID);
+	
+ALTER TABLE DETALLE_COMPRA MODIFY COMPRA_ID int NOT NULL;
+
+ALTER TABLE DETALLE_COMPRA MODIFY PRODUCTO_ID int NOT NULL;
+
+ALTER TABLE DETALLE_COMPRA MODIFY CANTIDAD int NOT NULL;
+
+
+SELECT * FROM DETALLE_COMPRA
 
