@@ -6,7 +6,7 @@ PAIS varchar(25),
 CATEGORIA varchar(30)
 );
 
-INSERT INTO CLIENTES (ID,NOMBRE,PAIS,CATEGORIA,NUM_VENTA)
+INSERT INTO CLIENTES (ID,NOMBRE,PAIS,CATEGORIA)
 VALUES(1, 'Ariam Aranda Reyes', 'Chile', 'Libros'),
 	  (2, 'Amaru Fernandez Durán', 'Chile', 'Tecnología'),
 	  (3, 'Diana López Áviles','Alemania','Robótica'),
